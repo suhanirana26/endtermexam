@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .weather-container {
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container weather-container">
+    <h2>Weather App</h2>
+    <div>
+        <label for="cityInput">Enter City:</label>
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <button onclick="getWeather()">Get Weather</button>
+    </div>
+    <div id="weatherInfo"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    const apiKey = '4246b8f18ba367aa2d6a82f13b14fa19';
+    const weatherInfoElement = document.getElementById('weatherInfo');
+
+    function getWeather() {
+        const city = document.getElementById('cityInput').value;
+        const apiUrl = http://api.weatherstack.com/;;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const temperature = data.main.temp;
+                const description = data.weather[0].description;
+
+                const weatherText = `Current Temperature: ${temperature}°C<br>Condition: ${description}`;
+                weatherInfoElement.innerHTML = weatherText;
+            })
+            .catch(error => {
+                console.error('Error fetching weather data:', error);
+                weatherInfoElement.innerHTML = 'Error fetching weather data. Please try again.';
+            });
+    }
+</script>
+
+</body>
+</html>
